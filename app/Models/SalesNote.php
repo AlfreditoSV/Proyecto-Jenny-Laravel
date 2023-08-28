@@ -9,4 +9,5 @@ class SalesNote extends Model
 {
     use HasFactory;
     protected $table = 'sales_note';
+    protected $primaryKey = 'id_sale_note';
 }

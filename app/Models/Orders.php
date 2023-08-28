@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Orders extends Model
 {
     use HasFactory;
+    
+    protected $table = 'orders';
+    protected $primaryKey = 'id_order';
 
     public function saleNote(){
         return $this->belongsTo(SalesNote::class,'id_order','id_order');

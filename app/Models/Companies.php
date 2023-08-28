@@ -10,4 +10,5 @@ class Companies extends Model
     use HasFactory;
 
     protected $table = "companies";
+    protected $primaryKey = "id_company";
 }

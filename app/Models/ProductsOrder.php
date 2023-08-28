@@ -10,6 +10,7 @@ class ProductsOrder extends Model
     use HasFactory;
 
     protected $table = 'products_order';
+    protected $primaryKey = 'id_product_order';
 
     public function catalogProduct(){
         return $this->belongsTo(CatalogProducts::class,'id_product_sinube','id_product_sinube');

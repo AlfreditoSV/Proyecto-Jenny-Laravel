@@ -116,7 +116,7 @@
                         </th>
                         <th wire:click="orderTable('name')" scope="col"
                             class="cursor-pointer px-4 py-3">Nombre</th>
-                        <th wire:click="orderTable('last name_user')" scope="col"
+                        <th wire:click="orderTable('last_name_user')" scope="col"
                             class="cursor-pointer px-4 py-3">Apellido</th>
                             <th wire:click="orderTable('id_company')" scope="col"
                             class="cursor-pointer px-4 py-3">Rol</th>
@@ -131,58 +131,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @if (!empty($data_file))
-                        @foreach ($data_file as $product => $value)
-                        
-                            @php
-                                if ($product == 0) {
-                                    continue;
-                                }
-                            @endphp
-                            <tr class="border-b text-center">
-                                <td class="px-6 py-3"><input type="checkbox" 
-                                        value="{{ $value[0] }}"
-                                        class="rowCheckbox relative float-left -ml-[1.5rem] mr-[6px] mt-[0.15rem] h-[1.125rem] w-[1.125rem] appearance-none rounded-[0.25rem] border-[0.125rem] border-solid border-neutral-300 outline-none before:pointer-events-none before:absolute before:h-[0.875rem] before:w-[0.875rem] before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-[0px_0px_0px_13px_transparent] before:content-[''] checked:border-primary checked:bg-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:-mt-px checked:after:ml-[0.25rem] checked:after:block checked:after:h-[0.8125rem] checked:after:w-[0.375rem] checked:after:rotate-45 checked:after:border-[0.125rem] checked:after:border-l-0 checked:after:border-t-0 checked:after:border-solid checked:after:border-white checked:after:bg-transparent checked:after:content-[''] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:shadow-none focus:transition-[border-color_0.2s] focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] focus:after:absolute focus:after:z-[1] focus:after:block focus:after:h-[0.875rem] focus:after:w-[0.875rem] focus:after:rounded-[0.125rem] focus:after:content-[''] checked:focus:before:scale-100 checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:after:-mt-px checked:focus:after:ml-[0.25rem] checked:focus:after:h-[0.8125rem] checked:focus:after:w-[0.375rem] checked:focus:after:rotate-45 checked:focus:after:rounded-none checked:focus:after:border-[0.125rem] checked:focus:after:border-l-0 checked:focus:after:border-t-0 checked:focus:after:border-solid checked:focus:after:border-white checked:focus:after:bg-transparent dark:border-neutral-600 dark:checked:border-primary dark:checked:bg-primary dark:focus:before:shadow-[0px_0px_0px_13px_rgba(255,255,255,0.4)] dark:checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca]">
-                                </td>
-                                <td class="px-4 py-3">{{ $value[0] }}</td>
-                                <td class="px-4 py-3">{{ $value[1] }}</td>
-                                <td class="px-4 py-3">{{ $value[2] }}</td>
-                                <td class="px-4 py-3">{{ $value[3] }}</td>
-                                <td class="px-4 py-3">{{ $value[4] }}</td>
-                                <td class="px-4 py-3">{{ $value[5] }}</td>
-                                <td class="px-4 py-3">{{ $value[6] }}</td>
-                                <td class="px-4 py-3">{{ $value[7] }}</td>
-                                <td class="px-2 py-3">
-
-                                    <div class="relative mb-3" data-te-input-wrapper-init>
-                                        <input type="number"
-                                            
-                                            class="cantidadProductos peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
-                                            id="cantidadProductos" value="{{ $value[8] }}" min=0
-                                            max="{$product->existence_product}" placeholder="Example label" />
-                                        <label for="cantidadProductos"
-                                            class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary">
-                                        </label>
-                                    </div>
-                                </td>
-                                <td class="px-2 py-3">
-
-
-                                    <div class="relative mb-3" data-te-input-wrapper-init>
-                                        <input type="number"
-                                           
-                                            class="cantidadExcedente peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
-                                            id="cantidadExcedente" value="{{ $value[9] }}" min=0
-                                            max="{$product->existence_product}" placeholder="Example label" />
-                                        <label for="cantidadExcedente"
-                                            class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary">
-                                        </label>
-                                    </div>
-                                </td>
-
-                            </tr>
-                        @endforeach
-                    @else
+                    @if (!empty($users))
                         @foreach ($users as $user => $value)
                             <tr class="border-b text-center">
                                 <td class="px-6 py-3"><input type="checkbox" 
@@ -190,9 +139,26 @@
                                         class="rowCheckbox relative float-left -ml-[1.5rem] mr-[6px] mt-[0.15rem] h-[1.125rem] w-[1.125rem] appearance-none rounded-[0.25rem] border-[0.125rem] border-solid border-neutral-300 outline-none before:pointer-events-none before:absolute before:h-[0.875rem] before:w-[0.875rem] before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-[0px_0px_0px_13px_transparent] before:content-[''] checked:border-primary checked:bg-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:-mt-px checked:after:ml-[0.25rem] checked:after:block checked:after:h-[0.8125rem] checked:after:w-[0.375rem] checked:after:rotate-45 checked:after:border-[0.125rem] checked:after:border-l-0 checked:after:border-t-0 checked:after:border-solid checked:after:border-white checked:after:bg-transparent checked:after:content-[''] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:shadow-none focus:transition-[border-color_0.2s] focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] focus:after:absolute focus:after:z-[1] focus:after:block focus:after:h-[0.875rem] focus:after:w-[0.875rem] focus:after:rounded-[0.125rem] focus:after:content-[''] checked:focus:before:scale-100 checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:after:-mt-px checked:focus:after:ml-[0.25rem] checked:focus:after:h-[0.8125rem] checked:focus:after:w-[0.375rem] checked:focus:after:rotate-45 checked:focus:after:rounded-none checked:focus:after:border-[0.125rem] checked:focus:after:border-l-0 checked:focus:after:border-t-0 checked:focus:after:border-solid checked:focus:after:border-white checked:focus:after:bg-transparent dark:border-neutral-600 dark:checked:border-primary dark:checked:bg-primary dark:focus:before:shadow-[0px_0px_0px_13px_rgba(255,255,255,0.4)] dark:checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca]">
                                 </td>
                                 <td class="px-4 py-3">{{ $value->id }}</td>
-                                <td class="px-4 py-3">{{ $value->description_product }}</td>
+                                <td class="px-4 py-3">{{ $value->name }}</td>
                                 <td class="px-4 py-3">{{ $value->last_name_user }}</td>
-                                <td class="px-4 py-3">{{ $value->id_catalog_rol }}</td>
+                                <td class="px-4 py-3">
+                                    @switch($value->id_catalog_rol)
+                                        @case(1)
+                                        <span
+                                        class="inline-block whitespace-nowrap rounded-full bg-primary-100 px-[0.65em] pb-[0.25em] pt-[0.35em] text-center align-baseline text-[0.75em] font-bold leading-none text-primary-700">
+                                        Administrador
+                                      </span>
+                                            @break
+                                          </span>
+                                        @default
+                                            
+
+                                        <span
+                                        class="inline-block whitespace-nowrap rounded-full bg-primary-100 px-[0.65em] pb-[0.25em] pt-[0.35em] text-center align-baseline text-[0.75em] font-bold leading-none text-primary-700">
+                                        Cliente
+                                    @endswitch
+                                    
+                                </td>
                                 <td class="px-4 py-3">{{ $value->email }}</td>
                                 <td class="px-4 py-3">{{ $value->person_type_user }}</td>
                                 <td class="px-4 py-3">{{ $value->asset }}</td>
@@ -263,6 +229,158 @@
             {{ $users->links() }}
         @endif
 </div>
+
+<!-- Modal -->
+<div
+data-te-modal-init
+class="fixed left-0 top-0 z-[1055] hidden h-full w-full overflow-y-auto overflow-x-hidden outline-none"
+id="alta_usuarios"
+tabindex="-1"
+aria-labelledby="rightBottomModalLabel"
+aria-hidden="true">
+<div
+  data-te-modal-dialog-ref
+  class="pointer-events-none absolute bottom-7 right-7 h-auto w-full translate-x-[100%] opacity-0 transition-all duration-300 ease-in-out min-[576px]:mx-auto min-[576px]:mt-7 min-[576px]:max-w-[500px]">
+  <div
+    class="min-[576px]:shadow-[0_0.5rem_1rem_rgba(#000, 0.15)] pointer-events-auto relative flex w-full flex-col rounded-md border-none bg-white bg-clip-padding text-current shadow-lg outline-none dark:bg-neutral-600">
+    <div
+      class="flex flex-shrink-0 items-center justify-between rounded-t-md border-b-2 border-neutral-100 border-opacity-100 p-4 dark:border-opacity-50">
+      <!--Modal title-->
+      <h5
+        class="text-xl font-medium leading-normal text-neutral-800 dark:text-neutral-200"
+        id="exampleModalLabel">
+        Alta de usuarios
+      </h5>
+      <!--Close button-->
+      <button
+        type="button"
+        class="box-content rounded-none border-none hover:no-underline hover:opacity-75 focus:opacity-100 focus:shadow-none focus:outline-none"
+        data-te-modal-dismiss
+        aria-label="Close">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="h-6 w-6">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+
+    <!--Modal body-->
+    <div class="relative flex-auto p-4 text-sm" data-te-modal-body-ref>
+        <div class="bg-white rounded shadow-lg p-6 max-w-md w-full max-h-96 overflow-y-auto">
+               <!-- Validation Errors -->
+        <x-auth-validation-errors class="mb-4" :errors="$errors" />
+
+        <div x-data="data()">
+        <form x-on:submit.prevent="enviarFormulario">
+            @csrf
+
+            <div class="grid gap-6">
+                <!-- Name -->
+                <div class="space-y-2">
+                    <x-label for="name" :value="__('Nombre')" />
+                    <x-input-with-icon-wrapper>
+                        <x-slot name="icon">
+                            <x-heroicon-o-user aria-hidden="true" class="w-5 h-5" />
+                        </x-slot>
+                        <x-input withicon id="name" class="block w-full" type="text" name="name" :value="old('name')"
+                            required autofocus placeholder="{{ __('Nombre') }}"  x-model="formData.name" />
+                    </x-input-with-icon-wrapper>
+                </div>
+
+                <!-- Email Address -->
+                <div class="space-y-2">
+                    <x-label for="email" :value="__('Correo electrónico')" />
+                    <x-input-with-icon-wrapper>
+                        <x-slot name="icon">
+                            <x-heroicon-o-mail aria-hidden="true" class="w-5 h-5" />
+                        </x-slot>
+
+                        <x-input withicon id="rol" class="block w-full" type="email" name="email"
+                            :value="old('email')" required placeholder="{{ __('Correo electrónico') }}" x-model="formData.email" />
+                    </x-input-with-icon-wrapper>
+                </div>
+                
+                <!-- Rol users-->
+                <div class="space-y-2">
+                    <x-label for="rol" :value="__('Rol del usaurio')" />
+                    <x-input-with-icon-wrapper>
+                        <x-slot name="icon">                            
+                        </x-slot>
+                        
+                        <select class="block w-full" name="rol"  x-model="formData.rol">
+                            <option selected>Seleccione un rol</option>
+                         @foreach ($catalog_roles as $role=>$value )
+                         <option value="{{$value->id_catalog_rol}}">{{$value->name_catalog_rol}}</option>
+                         @endforeach
+                          </select>
+                    </x-input-with-icon-wrapper>
+                </div>
+
+                <!-- Password -->
+                <div class="space-y-2">
+                    <x-label for="password" :value="__('Contraseña')" />
+                    <x-input-with-icon-wrapper>
+                        <x-slot name="icon">
+                            <x-heroicon-o-lock-closed aria-hidden="true" class="w-5 h-5" />
+                        </x-slot>
+                        <x-input withicon id="password" class="block w-full" type="password" name="password" required
+                            autocomplete="new-password" placeholder="{{ __('Contraseña') }}" x-model="formData.password"/>
+                    </x-input-with-icon-wrapper>
+                </div>
+
+                <!-- Confirm Password -->
+                <div class="space-y-2">
+                    <x-label for="password_confirmation" :value="__('Confirmar Contraseña')" />
+                    <x-input-with-icon-wrapper>
+                        <x-slot name="icon">
+                            <x-heroicon-o-lock-closed aria-hidden="true" class="w-5 h-5" />
+                        </x-slot>
+                        <x-input withicon id="password_confirmation" class="block w-full" type="password"
+                            name="password_confirmation" required placeholder="{{ __('Confirmar Contraseña') }}" x-model="formData.password_confirmation"/>
+                    </x-input-with-icon-wrapper>
+                </div>
+
+                    @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
+                        <div class="space-y-2">
+                            <x-label for="terms">
+                                <div class="flex items-center">
+                                    <x-checkbox name="terms" id="terms" x-model="formData.terms"/>  
+
+                                    <div class="ml-2">
+                                        {!! __('I agree to the :terms_of_service and :privacy_policy', [
+                                                'terms_of_service' => '<a target="_blank" href="'.route('terms.show').'" class="underline text-sm text-blue-600 hover:text-blue-900 dark:hover:text-blue-400">'.__('Terms of Service').'</a>',
+                                                'privacy_policy' => '<a target="_blank" href="'.route('policy.show').'" class="underline text-sm text-blue-600 hover:text-blue-900 dark:hover:text-blue-400">'.__('Privacy Policy').'</a>',
+                                        ]) !!}
+                                    </div>
+                                </div>
+                            </x-label>
+                        </div>
+                    @endif
+
+                <div>
+                    <x-button class="justify-center w-full gap-2" data-te-modal-dismiss>
+                        <x-heroicon-o-user-add class="w-6 h-6" aria-hidden="true" />
+                        <span>{{ __('Regristrar') }}</span>
+                    </x-button>
+                </div>
+
+                
+            </div>
+        </form>
+    </div>
+        </div>
+    </div>
+  </div>
+</div>
+</div> <!--End Modal-->
 </section>
     @push('scripts')
         <script>
@@ -309,8 +427,33 @@
             });
             // Agregar un objeto vacío para que el último elemento no tenga coma
             const orderJSON = JSON.stringify(orderData);
-            console.log(orderJSON);
             Livewire.emit('orderDataSubmitted', orderJSON);
         });
     </script>
+    <script src="{{asset('assets/js/app.js')}}"></script>
+    
+<script>
+    function data(){
+      return{
+       formData:{
+              name:'',
+              email:'',
+              password:'',
+              password_confirmation:'',
+              rol:'',
+              terms:''
+              },
+          async enviarFormulario(){
+              this.$wire.createUser(this.formData);
+              this.$wire.on('createUser',(value)=>{
+                if(value.icon=='success'){
+                }
+
+              })
+          }
+      }
+    }
+ </script>
+
+   
 

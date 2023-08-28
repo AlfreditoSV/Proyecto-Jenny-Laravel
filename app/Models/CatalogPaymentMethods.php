@@ -9,4 +9,5 @@ class CatalogPaymentMethods extends Model
 {
     use HasFactory;
     protected $table = 'catalog_payment_methods';
+    protected $primaryKey = 'id_catalog_payment_method';
 }

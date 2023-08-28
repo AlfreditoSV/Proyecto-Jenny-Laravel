@@ -4,49 +4,48 @@ namespace App\Http\Controllers\Users;
 
 use App\Http\Controllers\Controller;
 use App\Actions\Fortify\CreateNewUser;
-use App\Models\CatalogRoles;
-use App\View\Components\table\tr;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Throwable;
 
+
 class UsersController extends Controller
 {
-    public $catalog_roles;
-
-    public function __construct()
-    {
-        $this->catalog_roles = CatalogRoles::all();
-    }
-
+    
     public function index()
     {
-        $catalog_roles = $this->catalog_roles;
-        return view('admin.users.index', ['catalog_roles' => $catalog_roles]);
+        
+        return view('admin.users.index');
     }
 
-    public function create(Request $request)
+    public function create($request)
     {
         try {
-            $request->validate([
+            $validator = Validator::make($request, [
                 'name' => 'required|string|max:255',
-                'rol' => 'required',
-                'email' => 'required|string|email|max:255|unique:users',
-                'password' => 'required|string|min:8',
+                'email' => 'required|string|email|max:255|unique:users,email',
+                'password' => 'required|string|confirmed|min:8',
+                'rol' => 'required|integer',
             ]);
+        
+            if ($validator->fails()) {
+                return [
+                    'result' => 'error',
+                    'message' =>  $validator->errors()->first()
+                ];
+            }
             $user = new CreateNewUser();
-            $user->create($request->all());
+            $user->create($request);
             $result = [
                 'result' => 'success',
                 'message' => 'Usuario creado correctamente'
             ];
-            dd($result);
             return $result;
         } catch (Throwable $th) {
             $result = [
                 'result' => 'error',
                 'message' => 'Error al crear usuario : ' . $th->getMessage()
             ];
-            dd($result);
             return $result;
         }
     }

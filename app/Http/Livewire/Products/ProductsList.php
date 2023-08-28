@@ -23,17 +23,34 @@ class ProductsList extends Component
     public $file;
     public $date;
     public $data_file = [];
+    
+    public $products;
     protected $listeners = ['orderDataSubmitted' => 'createOrder'];
+    
+
+    public function mount()
+    {
+        $this->products = CatalogProducts::where('asset', 1)->orderBy($this->sort, $this->direction)->get();
+    }
 
     public function render()
     {
-        $search = $this->search;
-        $products = CatalogProducts::where('asset', 1)->where(function ($query) {
-            $query->where('id_product', 'like', "%{$this->search}%")->orWhere('description_product', 'like', "%{$this->search}%")->orWhere('brand_product', 'like', "%{$this->search}%");
-        })->orderBy($this->sort, $this->direction)->get();
-        return view('livewire.products.products-list', ['products' => $products]);
+        return view('livewire.products.products-list');
     }
 
+    public function updatingSearch()
+    {
+        $search = $this->search;
+        if($search == null || $search == ''){
+            $this->products = CatalogProducts::where('asset', 1)->orderBy($this->sort, $this->direction)->get();
+            return;
+        }
+
+        $this->products=CatalogProducts::where('asset', 1)->where(function ($query) {
+            $query->where('id_product', 'like', "%{$this->search}%")->orWhere('description_product', 'like', "%{$this->search}%")->orWhere('brand_product', 'like', "%{$this->search}%");
+        })->orderBy($this->sort, $this->direction)->get();
+        $this->resetPage();
+    }
     public function orderTable($sort)
     {
         if ($this->sort == $sort) {
@@ -69,7 +86,7 @@ class ProductsList extends Component
             $id_order = $result['id_order'];
             $id_user = $result['id_user'];
             OrdersController::orderNotification($id_user, $id_order, 2);
-            $this->render();
+            $this->products=CatalogProducts::where('asset', 1)->orderBy($this->sort, $this->direction)->get();
             $this->alert('success', 'Éxito', $result['message']);
         } else if ($result['status'] == 'error') {
             $this->alert('error', 'Error', $result['message']);
